@@ -1,0 +1,13 @@
+{
+  "name": "gopal-voice-assistant",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A voice-first personal and communication assistant",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
