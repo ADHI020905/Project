@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#111a19">
+    <meta name="description" content="Meet Gopal, your voice-first personal assistant for interviews, email drafts, and job searches.">
+    <title>Gopal — your voice-first assistant</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="Gopal home">
+          <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+          <span>gopal<span class="brand-period">.</span></span>
+        </a>
+        <div class="topbar-right">
+          <span class="availability"><span class="availability-dot"></span> Standing by</span>
+          <span class="avatar" aria-label="Your profile">G</span>
+        </div>
+      </header>
+
+      <main>
+        <section class="intro">
+          <div class="eyebrow"><span class="eyebrow-line"></span> YOUR VOICE-FIRST ASSISTANT</div>
+          <h1>What’s on your mind<span class="heading-dot">?</span></h1>
+          <p>At your service—for clear answers and your next move.</p>
+        </section>
+
+        <section class="assistant-layout" aria-label="Gopal assistant">
+          <section class="panel conversation-panel" aria-labelledby="conversation-title">
+            <header class="panel-header">
+              <div>
+                <h2 id="conversation-title">Your conversation</h2>
+                <p id="mode-description">A thoughtful assistant for whatever’s on your mind.</p>
+              </div>
+              <div class="voice-status" id="voice-status" data-state="idle" role="status" aria-live="polite">
+                <span class="voice-orb" aria-hidden="true">
+                  <span class="orb-ring"></span>
+                  <span class="orb-core"><i></i><i></i><i></i><i></i><i></i></span>
+                </span>
+                <span id="voice-status-label">Ready</span>
+              </div>
+            </header>
+
+            <div class="mode-picker" role="group" aria-label="Choose an assistant mode">
+              <button class="mode-button active" type="button" data-mode="assistant" aria-pressed="true">
+                <span aria-hidden="true">✦</span> Assistant
+              </button>
+              <button class="mode-button" type="button" data-mode="interview" aria-pressed="false">
+                <span aria-hidden="true">⌘</span> Mock interview
+              </button>
+              <button class="mode-button" type="button" data-mode="email" aria-pressed="false">
+                <span aria-hidden="true">↗</span> Email writer
+              </button>
+            </div>
+
+            <div class="conversation" id="conversation" role="log" aria-live="polite" aria-relevant="additions">
+              <article class="message assistant-message">
+                <span class="message-avatar" aria-hidden="true">g</span>
+                <div class="message-content">
+                  <span class="speaker">Gopal <span>· just now</span></span>
+                  <p>Good day. I’m Gopal, your personal assistant. What may I help you with?</p>
+                </div>
+              </article>
+            </div>
+
+            <form class="composer" id="chat-form">
+              <label class="sr-only" for="message-input">Write a message</label>
+              <textarea id="message-input" name="message" rows="1" maxlength="8000" placeholder="Tell me what you’re thinking…" required></textarea>
+              <div class="language-row">
+                <label class="language-control" for="language-select">
+                  <span>Language</span>
+                  <select id="language-select" name="language">
+                    <option value="auto">Auto-detect</option>
+                    <option value="english">English</option>
+                    <option value="tamil">தமிழ்</option>
+                    <option value="tanglish">Tanglish</option>
+                  </select>
+                </label>
+                <span class="language-hint">Gopal replies in your language</span>
+              </div>
+              <div class="composer-actions">
+                <div class="voice-controls">
+                  <button class="icon-button mic-button" id="mic-button" type="button" aria-label="Start voice input" title="Start voice input">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="12" rx="3"></rect><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v3m-4 0h8"></path></svg>
+                  </button>
+                  <label class="speak-toggle"><input id="speak-toggle" type="checkbox" checked> <span>Speak replies</span></label>
+                </div>
+                <button class="send-button" id="send-button" type="submit">
+                  <span>Send</span>
+                  <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h13m-5-5 5 5-5 5"></path></svg>
+                </button>
+              </div>
+              <p class="voice-note" id="voice-note">Tap the microphone when you’re ready. Gopal never listens in the background.</p>
+            </form>
+          </section>
+
+          <aside class="panel jobs-panel" aria-labelledby="jobs-title">
+            <header class="panel-header jobs-header">
+              <div>
+                <span class="section-kicker">YOUR NEXT STEP</span>
+                <h2 id="jobs-title">Find your opening</h2>
+                <p>Explore public listings that could be a fit.</p>
+              </div>
+              <span class="jobs-icon" aria-hidden="true">↗</span>
+            </header>
+
+            <form id="jobs-form" class="jobs-form">
+              <label for="job-query">Role or skill</label>
+              <div class="field-wrap">
+                <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5"></circle><path d="m13 13 4 4"></path></svg>
+                <input id="job-query" name="q" type="search" maxlength="120" placeholder="e.g. frontend developer">
+              </div>
+              <label for="job-location">Location</label>
+              <div class="field-wrap">
+                <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M16 8.3c0 4.4-6 9.2-6 9.2S4 12.7 4 8.3a6 6 0 1 1 12 0Z"></path><circle cx="10" cy="8" r="2"></circle></svg>
+                <input id="job-location" name="location" type="search" maxlength="120" placeholder="e.g. Bengaluru or remote">
+              </div>
+              <button class="search-button" type="submit" id="search-button">
+                <span>Search public listings</span>
+                <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h13m-5-5 5 5-5 5"></path></svg>
+              </button>
+            </form>
+
+            <div class="job-results" id="job-results" aria-live="polite">
+              <div class="job-empty">
+                <span class="empty-sparkle" aria-hidden="true">✳</span>
+                <p>A good next step starts with a search.</p>
+                <span>Listings are fetched only when you search.</span>
+              </div>
+            </div>
+            <p class="source-note">Public listings from <a href="https://www.arbeitnow.com/" target="_blank" rel="noopener noreferrer">Arbeitnow</a>. Not verified campus drives—confirm details with the employer.</p>
+          </aside>
+        </section>
+
+        <footer class="footer">
+          <span>Made for clearer conversations and brighter next steps.</span>
+          <span>Gopal <span class="footer-separator">·</span> your assistant, your pace</span>
+        </footer>
+      </main>
+    </div>
+  </body>
+</html>
